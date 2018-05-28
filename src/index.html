@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html data-ng-app="catenae" data-ng-controller="MainController" lang="es">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Catenae</title>
+	<meta name="author" content="Rodrigo Martínez-Castaño">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#448aff">
+	<link rel="icon" sizes="192x192" href="images/icon.png">
+
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link type="text/css" rel="stylesheet" href="css/angular-chart.css">
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css">
+	<link type="text/css" rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css/nv.d3.css">
+	<base href="/">
+
+	<head>
+
+
+		<body class="grey lighten-5">
+
+			<!-- AngularJS and external dependences -->
+			<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+			<script type="text/javascript" src="js/angular.min.js"></script>
+			<script type="text/javascript" src="js/angular-route.min.js"></script>
+			<script type="text/javascript" src="js/Chart.min.js"></script>
+			<script type="text/javascript" src="js/angular-chart.min.js"></script>
+			<script type="text/javascript" src="js/materialize.min.js"></script>
+
+			<!-- AngularJS main module -->
+			<script type="text/javascript" src="app/modules/app.js"></script>
+
+			<!-- AngularJS services -->
+			<script type="text/javascript" src="app/services/MetaService.js"></script>
+			<script type="text/javascript" src="app/services/AlertsService.js"></script>
+			<script type="text/javascript" src="app/services/StatsService.js"></script>
+			<script type="text/javascript" src="app/services/UsersService.js"></script>
+
+			<!-- AngularJS controllers -->
+			<script type="text/javascript" src="app/controllers/MainController.js"></script>
+			<script type="text/javascript" src="app/controllers/AlertsController.js"></script>
+			<script type="text/javascript" src="app/controllers/StatsController.js"></script>
+			<script type="text/javascript" src="app/controllers/DatasetsController.js"></script>
+			<script type="text/javascript" src="app/controllers/UsersController.js"></script>
+
+			<!-- Moment -->
+			<script src="js/moment.js"></script>
+
+			<!-- Angularjs-nvd3 -->
+			<script src="js/d3.js"></script>
+			<script src="js/nv.d3.js"></script>
+			<script src="js/angularjs-nvd3-directives.min.js"></script>
+
+
+			<div class="navbar-fixed">
+				<nav class="blue accent-2">
+					<div class="logo-container">
+						<a href="/"><img class="logo" src="images/logo.png" alt="Catenae logo" /></a>
+					</div>
+				</nav>
+			</div>
+
+
+			<ul id="slide-out" class="sidenav sidenav-fixed">
+				<li>
+					<div class="user-view">
+						<div class="background">
+			         <img src="images/background.jpg">
+			       </div>
+						 <a><img class="circle" src="images/avatar.png"></a>
+						 <a><span class="white-text name">Expert Reviewer</span></a>
+						 <a><span class="white-text email"></span></a>
+	 				</div>
+				</li>
+
+				<li style="margin-top: -8px"><a href="alerts" ng-class="{active: activetab=='/alerts'}" class="waves-effect" href="#!"><i class="material-icons">warning</i>Alerts</a></li>
+				<li><a href="datasets" ng-class="{active: activetab=='/datasets'}" class="waves-effect" href="#!"><i class="material-icons">archive</i>Datasets</a></li>
+				<!-- <li><a href="users" ng-class="{active: activetab=='/users'}" class="waves-effect" href="#!"><i class="material-icons">account_circle</i>Users</a></li> -->
+				<li><a href="stats" ng-class="{active: activetab=='/stats'}" class="waves-effect" href="#!"><i class="material-icons">timeline</i>Statistics</a></li>
+
+			</ul>
+
+
+			<main class="sidenav-margin">
+				<div ng-view=""></div>
+			</main>
+
+			<footer class="page-footer">
+				<span class="nnom footer-text left">
+					Copyright © 2018 Rodrigo Martínez-Castaño. Some rights reserved.
+				</span>
+				<span class="footer-text right">
+					API version {{version}}
+				</span>
+			</footer>
+
+		</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!--
+    A Micromodule Approach for Building Real-Time Systems with Python-based
+    Models: Application to Early Risk Detection of Depression on Social Media
+
+    Copyright (C) 2017-2018 Rodrigo Martínez-Castaño (brunneis) <dev@brunneis.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<div class="row">
+
+  <ul class="tabs main-tabs">
+    <li id="undecided-tab" class="tab col s4"><a ng-click="changeAlertFilter('undecided')" href="#">Undecided</a></li>
+    <li class="tab col s4"><a ng-click="changeAlertFilter('risk')" href="#">Risk</a></li>
+    <li class="tab col s4"><a ng-click="changeAlertFilter('riskfree')" href="#">Risk Free</a></li>
+  </ul>
+
+
+  <div class="filters-container">
+    <div class="filters">
+
+
+      <div class="row" style="margin-right: 0">
+
+        <div class="left switch">
+          <label>
+            LAST ALERT PER USER
+            <input checked ng-click="showOnlyLastAlert = !showOnlyLastAlert" type="checkbox">
+            <span class="lever"></span>
+          </label>
+        </div>
+
+        <div class="left switch">
+          <label>
+            SORT BY RECENCY
+            <input ng-click="switchAlertOrder()" type="checkbox">
+            <span class="lever"></span>
+          </label>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <ul class="alert-collapsible collapsible popout" data-collapsible="accordion">
+
+    <!-- Alerts dynamically ordered by decreasing probability -->
+    <!-- <li ng-repeat="alert_key in notSorted(alerts, 'true')" ng-if="checkVisibility(alert_key)" ng-init="alert = alerts[alert_key]" ng-animate="'alert'"> -->
+    <li ng-repeat="alert in alerts | orderBy:['-' + sortBy, 'index']" ng-if="checkVisibility(alert)" ng-animate="'alert'">
+      <div class="progress alert-progress">
+        <div ng-class="alert.tag" class="determinate" style="background-color: #{{ avatarColors[alert.user] }}; width: {{alert.proba * 100}}%"></div>
+      </div>
+      <div class="collapsible-header alert-collapsible-header" ng-click="alertClick(alert, $index)">
+
+        <!-- <img class="left alert-avatar circle responsive-img" src="images/yuna.jpg"> -->
+        <a target="_blank" href="https://www.reddit.com/user/{{ alert.user }}">
+          <div style="background-color: #{{ avatarColors[alert.user] }}" class="left alert-avatar avatar-circle">
+            <span class="initials">{{ alert.user | initial }}</span>
+          </div>
+        </a>
+
+        <div class="left alert-nickname">{{ alert.user | cut:true:15:'...' }}</div>
+        <div class="left alert-time">{{ alert.timestamp | duration }}</div>
+
+        <nvd3-sparkline-chart ng-if="alert.risk_vector.length" class="nnom sparkline" data="alert.risk_vector" height="60" width="300" margin="{left:5, top:20, bottom:20, right:100}" x="xFunction()" y="yFunction()" color="colorFunction()">
+          <svg></svg>
+        </nvd3-sparkline-chart>
+
+        <span class="nnom grey-text alert-tag right new badge" data-badge-caption="">{{ alert.proba | number:2 }}</span>
+        <span ng-class="alert.tag" class="alert-tag right new badge" data-badge-caption="">{{ alert.prettyTag | uppercase }}</span>
+      </div>
+      <div class="collapsible-body">
+
+        <ul class="tabs alert-tabs">
+          <li class="tab col s6"><a class="active" ng-click="alert.tabFocus = 0" href="#submissions-{{ alert.id }}">Submissions</a></li>
+          <li class="tab col s6"><a ng-click="alert.tabFocus = 1" href="#comments-{{ alert.id }}">Comments</a></li>
+        </ul>
+
+
+        <div class="active" id="submissions-{{ alert.id }}">
+          <blockquote ng-if="submissions[alert.id].length == 0">
+            The aren't submissions for this alert.
+          </blockquote>
+          <ul class="collapsible post-collapsible" data-collapsible="accordion">
+            <li ng-if="submissions[alert.id].length > 0" ng-repeat="submission_key in notSorted(submissions[alert.id]) | orderBy:'proba'" ng-init="submission = submissions[alert.id][submission_key]">
+              <div class="collapsible-header">
+                <div class="post-progress" style="width: {{ submission.proba * 100 }}%"></div>
+                <!-- <i class="material-icons post-header-icon">message</i> -->
+                <div class="post-header-text">
+                  {{ submission.submission_title | cut:true:70:' [...]'}}
+                  <span class="nnom post-tag-proba right new badge" data-badge-caption="">{{ submission.proba | number:2 }}</span>
+                  <a class="nnom" target="_blank" href="https://www.reddit.com/r/{{submission.subreddit_id}}">
+                    <span style="background-color: #{{ subredditColors[submission.subreddit_id] }} !important" class="post-tag-subreddit right new badge" data-badge-caption="">{{ submission.subreddit_id }}</span>
+                  </a>
+                  <span class="nnom post-tag-margin right badge" data-badge-caption="">{{ submission.timestamp | duration }}</span>
+                  <span ng-if="alert.last_submission == submission.submission_id" class="nnom post-tag-subreddit right new badge" data-badge-caption="">TRIGGER</span>
+                </div>
+              </div>
+              <div class="collapsible-body post-collapsible-body">
+                <!-- <blockquote style="white-space: pre-line;">{{ (submission.content | sentences) || "Empty."}}</blockquote> -->
+                <blockquote style="white-space: pre-line;">{{ submission.submission_title }}<br>{{ (submission.content | sentences) || "[Empty body]"}}</blockquote>
+                <a target="_blank" href="https://www.reddit.com/r/{{submission.subreddit_id}}/comments/{{submission.submission_id}}" class="grey lighten-2 waves-effect btn-flat"><i class="material-icons left">web_asset</i>Watch on Reddit ({{ submission.submission_id }})</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div id="comments-{{ alert.id }}">
+          <blockquote ng-if="comments[alert.id].length == 0">
+            The aren't comments for this alert.
+          </blockquote>
+          <ul class="collapsible post-collapsible" data-collapsible="accordion">
+            <li ng-if="comments[alert.id].length > 0" ng-repeat="comment_key in notSorted(comments[alert.id]) | orderBy:'proba'" ng-init="comment = comments[alert.id][comment_key]">
+              <div class="collapsible-header">
+                <div class="post-progress" style="width: {{ comment.proba * 100 }}%"></div>
+                <!-- <i class="material-icons post-header-icon">message</i> -->
+                <div class="post-header-text">
+                  {{ comment.content | cut:true:70:' [...]'}}
+                  <span class="nnom post-tag-proba right new badge" data-badge-caption="%">{{ comment.proba * 100 | number:2 }}</span>
+                  <a class="nnom" target="_blank" href="https://www.reddit.com/r/{{comment.subreddit_id}}">
+                    <span style="background-color: #{{ subredditColors[comment.subreddit_id] }} !important" class="post-tag-subreddit right new badge" data-badge-caption="">{{ comment.subreddit_id }}</span>
+                  </a>
+                  <span class="nnom post-tag-margin right badge" data-badge-caption="">{{ comment.timestamp | duration }}</span>
+                  <span ng-if="alert.last_comment == comment.comment_id" class="nnom post-tag-subreddit right new badge" data-badge-caption="">TRIGGER</span>
+                </div>
+              </div>
+              <div class="collapsible-body post-collapsible-body">
+                <!-- <blockquote style="white-space: pre-line;">{{ (comment.content | sentences) || "Empty."}}</blockquote> -->
+                <blockquote style="white-space: pre-line;">{{ comment.content || "[Empty body]"}}</blockquote>
+                <a target="_blank" href="https://www.reddit.com/r/{{comment.subreddit_id}}/comments/{{comment.submission_id}}" class="grey lighten-2 waves-effect btn-flat">Watch on Reddit ({{ comment.comment_id }})</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="row">
+          <form class="right">
+            <label class="alert-tag-radio">
+              <input ng-click="updateAlertTag(alert, 'undecided')" class="with-gap" name="tag" type="radio" value="undecided" ng-model="alert.tag" />
+              <span>Undecided</span>
+            </label>
+            <label class="alert-tag-radio">
+              <input ng-click="updateAlertTag(alert, 'risk')" class="with-gap" name="tag" type="radio" value="risk" ng-model="alert.tag" />
+              <span>Risk</span>
+            </label>
+            <label class="alert-tag-radio">
+             <input ng-click="updateAlertTag(alert, 'riskfree')" class="with-gap" name="tag" type="radio" value="riskfree" ng-model="alert.tag" />
+             <span>Risk free</span>
+           </label>
+          </form>
+        </div>
+
+        <a ng-click="loadMorePosts(alert)" class="alert-bottom-button left btn-floating btn-large blue accent-2 waves-effect waves-light"><i class="material-icons">add</i></a>
+        <a style="margin-left: 20px" ng-click="hideAlert(alert)" class="alert-bottom-action right grey lighten-2 waves-effect btn-flat"><i class="material-icons left">visibility_off</i>Hide</a>
+        <a ng-click="unlistAlert(alert)" class="alert-bottom-action right grey lighten-2 waves-effect btn-flat"><i class="material-icons left">remove_from_queue</i>Unlist</a>
+    </li>
+  </ul>
+
+  </div>
+
+  <div class="tooltipped circle-button-margins center-align more-alerts-button" data-position="top" data-delay="50" data-tooltip="Load more alerts">
+    <a ng-click="loadAlerts('true')" class="btn-floating btn-large blue accent-2 waves-effect waves-light">
+       <i class="material-icons">add</i>
+    </a>
+  </div>
+
+</div>

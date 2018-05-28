@@ -1,0 +1,375 @@
+/* Custom Stylesheet */
+
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+
+
+.progress {
+  margin: 0;
+}
+
+.container-margins {
+  margin-top: 50px;
+}
+
+.big-card-icon {
+  font-size: 100px;
+  color: #448aff;
+}
+
+.blue-text {
+  color: #448aff !important;
+}
+
+.big-card-title {
+  font-size: 50px;
+  color: #448aff;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+  color: #F5F5F5;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover {
+  color: white;
+}
+
+.filters-container {
+  margin-bottom: -30px;
+}
+
+@media (max-width:1470px) {
+  /* Not necessary on small devices */
+  .nnom {
+    display: none;
+  }
+  #slide-out {
+    display: none;
+  }
+  .switch {
+    margin-right: 0;
+  }
+}
+
+
+.stats-card-action {
+  text-transform: none !important;
+  color: #fff;
+}
+
+.stats-card-action>h5 {
+  line-height: 100%;
+  margin:0;
+}
+
+.stats-card>.card-stacked>.card-content>h1 {
+  line-height: 100%;
+  margin-top: 0;
+}
+
+.stats-card {
+  height: 450px;
+}
+
+@media (min-width:1470px) {
+  #toast-container {
+    top: auto !important;
+    left: auto !important;
+    right: 5%;
+    bottom: 10%;
+  }
+}
+
+.switch {
+  margin-right: 40px;
+  margin-bottom: 20px;
+}
+
+.filters-container {
+  padding-top: 20px;
+  background-color: #fff;
+  height: 90px;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.filters {
+  margin-top: 20px;
+  background-color: white;
+  /* border: 1px;
+  border-style: solid;
+  border-color: #448aff;
+  border-radius: 5px; */
+}
+
+/* ALERT TAGS COLORS */
+
+.alert-tag {
+  font-weight: bold !important;
+  background-color: #FFF !important;
+}
+
+.alert-tag.undecided {
+  margin-right: 15px;
+  background-color: #BDBDBD !important;
+}
+
+.alert-tag.risk {
+  margin-right: 15px;
+  background-color: #F44336 !important;
+}
+
+.alert-tag.riskfree {
+  margin-right: 15px;
+  background-color: #8BC34A !important;
+}
+
+.footer-text {
+  position: relative;
+  margin-bottom: 5px;
+  margin-top: -15px;
+  font-size: 12px;
+}
+
+.footer-text.right {
+  float: right;
+  margin-right: 20px;
+}
+
+.footer-text.left {
+  float: left;
+}
+
+@media (min-width:1470px) {
+  .footer-text.left {
+    margin-left: 320px;
+  }
+}
+
+/* AVATAR */
+
+.avatar-circle {
+  width: 70px;
+  height: 70px;
+  background-color: #448aff;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.initials {
+  position: relative;
+  top: 17.5px;
+  font-size: 41px;
+  line-height: 41px;
+  color: #fff;
+  font-family: "Roboto", monospace;
+}
+
+.tabs {
+  background-color: rgba(0, 0, 0, 0);
+  overflow-x: hidden;
+}
+
+.tabs .tab a {
+  color: #7aabff;
+}
+
+.tabs .tab a:active {
+  color: #448aff;
+}
+
+.tabs .indicator {
+  background-color: #448aff;
+}
+
+.alert-tabs>.indicator {
+  width: 50%;
+}
+
+.main-tabs {
+  background-color: #fff;
+}
+
+.main-tabs>.indicator {}
+
+/* List animation */
+
+.alert-enter {
+  opacity: 0.0;
+}
+
+.alert-enter.alert-enter-active {
+  transition: all 0.5s ease;
+  opacity: 1.0;
+}
+
+.sidenav li>a.active {
+  background-color: #e0e0e0;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  margin-top: 20px;
+}
+
+/* End Sticky Footer */
+
+.sidenav-margin {
+  margin-top: 0;
+  background-color: #fff;
+}
+
+@media (min-width:1470px) {
+  .sidenav-margin {
+    margin-left: 300px;
+  }
+}
+
+.logo-container {
+  margin-top: 6px;
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo {
+  width: 150px;
+}
+
+.sidenav.sidenav-fixed {
+  margin-top: 64px;
+  z-index: 1;
+}
+
+[type="radio"]:not(:checked)+span, [type="radio"]:checked+span {
+  padding-left: 25px;
+}
+
+.alert-tag-radio {
+  margin-right: 15px;
+  width: 100%;
+}
+
+.alert-nickname {
+  position: absolute;
+  margin-left: 90px;
+  margin-top: 8px;
+  font-size: 1.15rem;
+}
+
+.alert-time {
+  position: absolute;
+  margin-left: 90px;
+  margin-top: 40px;
+  font-size: .85rem;
+  color: #757575;
+}
+
+.sparkline {
+  position: absolute;
+  margin-left: 200px;
+  margin-top: 5px;
+  width: 300px;
+}
+
+.alert-bottom-button {
+  margin-bottom: 0;
+}
+
+.alert-bottom-action {
+  margin-top: 1rem;
+}
+
+.fixed-action-btn {
+  position: relative;
+}
+
+/* Begin collapsible cards */
+
+.alert-collapsible-header {
+  height: 100px;
+}
+
+.alert-collapsible {
+  margin-top: 30px;
+  z-index: 0;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.collapsible.popout>li {
+  margin: 0;
+}
+
+.alert-progress {
+  background-color: #fff;
+  height: 5px;
+  border-radius: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+  /* margin-top: 20px; */
+}
+
+.alert-progress .determinate {
+  background-color: #448aff;
+}
+
+.post-header-text {
+  margin-top: 25px;
+}
+
+.post-header-icon {
+  float: left;
+  margin-top: 15px;
+}
+
+.collapsible-body {
+  overflow-y: auto;
+}
+
+.collapsible-header {
+  display: block;
+}
+
+.post-tag-proba {
+  background-color: #e0e0e0 !important;
+  color: #343434 !important;
+}
+
+.post-tag-margin {
+  margin-right: 6px;
+}
+
+.post-tag-subreddit {
+  margin-right: 12px;
+  /* Double due to the badge padding of 6px */
+  font-weight: bold !important;
+  background-color: #757575 !important;
+  color: #fff !important;
+}
+
+.post-progress {
+  min-height: 5px;
+  margin: -15px;
+  background-image: linear-gradient(to right, #fff 0%, #e0e0e0 90%);
+}
+
+.more-alerts-button {
+  margin-bottom: 35px;
+}
+
+/* End collapsible cards */

@@ -1,0 +1,59 @@
+<!--
+    A Micromodule Approach for Building Real-Time Systems with Python-based
+    Models: Application to Early Risk Detection of Depression on Social Media
+
+    Copyright (C) 2017-2018 Rodrigo Martínez-Castaño (brunneis) <dev@brunneis.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+
+<div class="container container-margins">
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card stats-card horizontal">
+        <div class="card-stacked">
+          <div class="card-content">
+            <i class="big-card-icon material-icons">question_answer</i>
+            <!--<h4>{{ newSubmissionsSecond + newCommentsSecond | number : 0 }} <span class="blue-text accent-2"> posts/sec</span></h4>-->
+            <h1>{{ comments + submissions | number : 0 }} <span class="blue-text accent-2">posts</span></h1>
+            <h5>{{ comments | number : 0 }} <span class="blue-text accent-2">comments</span></h5>
+            <h5>{{ submissions | number : 0 }} <span class="blue-text accent-2">submissions</span></h5>
+          </div>
+          <div class="card-action stats-card-action blue accent-2">
+            <!-- <h5><i class="left material-icons">swap_calls</i>{{ analyzedTextsSecond | number : 1 }} analyzed/sec</h5> -->
+            <h5><i class="left material-icons">swap_calls</i>{{ analyzedTextsSecond | number : 0 }} | {{ comments + submissions - analyzedTextsSecond | number : 0 }} in queue</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m6">
+      <div class="card stats-card horizontal">
+        <div class="card-stacked">
+          <div class="card-content">
+            <i class="big-card-icon material-icons">people</i>
+            <!--<h4>{{ newUsersSecond | number : 0 }} <span class="blue-text accent-2"> users/sec</span></h4>-->
+            <h1>{{ users | number : 0 }} <span class="blue-text accent-2">users</span></h1>
+          </div>
+          <div class="card-action stats-card-action blue accent-2">
+            <!-- <h5><i class="left material-icons">swap_calls</i>{{ analyzedUsersSecond * 60 | number : 1 }} analyzed/min</h5> -->
+            <h5><i class="left material-icons">swap_calls</i>{{ analyzedUsersSecond | number : 0 }} analyzed</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
