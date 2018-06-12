@@ -19,3 +19,6 @@ FROM brunneis/httpd-centos
 MAINTAINER "Rodrigo Martínez" <dev@brunneis.com>
 
 COPY httpd.conf /opt/httpd/conf/
+ADD src /var/www/html
+
+EXPOSE 80
