@@ -33,7 +33,7 @@
           </div>
           <div class="card-action stats-card-action blue accent-2">
             <!-- <h5><i class="left material-icons">swap_calls</i>{{ analyzedTextsSecond | number : 1 }} analyzed/sec</h5> -->
-            <h5><i class="left material-icons">swap_calls</i>{{ analyzedTextsSecond | number : 0 }} | {{ comments + submissions - analyzedTextsSecond | number : 0 }} in queue</h5>
+            <h5><i class="left material-icons">swap_calls</i>{{ analyzedTextsSecond | number : 0 }} | {{ comments + submissions - analyzedTextsSecond | number : 0 | greaterzero }} in queue</h5>
           </div>
         </div>
       </div>

@@ -40,6 +40,16 @@ app.filter('initial', function() {
   };
 });
 
+app.filter('greaterzero', function() {
+  return function(value) {
+    if (value > 0) {
+      return value;
+    } else {
+      return 0;
+    }
+  }
+})
+
 app.filter('duration', function() {
   return function(value) {
     // If millis precision, reduce to seconds
