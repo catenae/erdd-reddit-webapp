@@ -92,7 +92,7 @@
 
         <div class="active" id="submissions-{{ alert.id }}">
           <blockquote ng-if="submissions[alert.id].length == 0">
-            The aren't submissions for this alert.
+            There aren't submissions for this alert.
           </blockquote>
           <ul class="collapsible post-collapsible" data-collapsible="accordion">
             <li ng-if="submissions[alert.id].length > 0" ng-repeat="submission_key in notSorted(submissions[alert.id]) | orderBy:'proba'" ng-init="submission = submissions[alert.id][submission_key]">
@@ -120,7 +120,7 @@
 
         <div id="comments-{{ alert.id }}">
           <blockquote ng-if="comments[alert.id].length == 0">
-            The aren't comments for this alert.
+            There aren't comments for this alert.
           </blockquote>
           <ul class="collapsible post-collapsible" data-collapsible="accordion">
             <li ng-if="comments[alert.id].length > 0" ng-repeat="comment_key in notSorted(comments[alert.id]) | orderBy:'proba'" ng-init="comment = comments[alert.id][comment_key]">

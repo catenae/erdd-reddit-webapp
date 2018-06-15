@@ -350,9 +350,7 @@ app.controller('AlertsController', function($scope, $filter, $interval, AlertsSe
     }
   }
 
-  $scope.loadPosts = function(alert, entity, last_id) {
-    var firstLoad = false;
-
+  $scope.loadPosts = function(alert, entity) {
     if (entity == 'submissions') {
       var posts = $scope.submissions;
     } else if (entity == 'comments') {
@@ -362,28 +360,30 @@ app.controller('AlertsController', function($scope, $filter, $interval, AlertsSe
       return;
     }
 
+    var firstLoad = false;
     if (posts[alert.id] == undefined) {
       posts[alert.id] = [];
       firstLoad = true;
     }
 
-    if (last_id == undefined) {
-      if (entity == 'submissions') {
-        last_id = alert.last_submission;
-      } else if (entity == 'comments') {
-        last_id = alert.last_comment;
-      }
+    if (entity == 'submissions') {
+      last_id = alert.last_submission;
+    } else if (entity == 'comments') {
+      last_id = alert.last_comment;
+    }
+    // The alert does not affect this kind of entity, return
+    if (!last_id){
+      return;
     }
 
     alert.currentPages[entity]++;
-
     AlertsService.getPosts(entity, alert.user, last_id, postsBatchSize, alert.currentPages[entity])
       .success(function(data) {
-        const NO_MORE_ALERTS = "There aren't more " + entity + " for this alert";
+        const NO_MORE_X_IN_ALERT = "There aren't more " + entity + " for this alert";
 
         if (data.length == 0 && !firstLoad) {
           M.toast({
-            html: NO_MORE_ALERTS
+            html: NO_MORE_X_IN_ALERT
           });
           return;
         }
@@ -421,10 +421,9 @@ app.controller('AlertsController', function($scope, $filter, $interval, AlertsSe
 
         if (!newPostsFlag) {
           M.toast({
-            html: NO_MORE_ALERTS
+            html: NO_MORE_X_IN_ALERT
           });
         }
-
       });
   }
 
