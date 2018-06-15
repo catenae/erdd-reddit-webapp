@@ -19,7 +19,7 @@
 */
 
 app.controller('AlertsController', function($scope, $filter, $interval, AlertsService) {
-
+  $scope.loadLock = false;
   $scope.alertFilter = 'undecided';
   $scope.avatarColors = {};
   $scope.subredditColors = {};
@@ -287,7 +287,9 @@ app.controller('AlertsController', function($scope, $filter, $interval, AlertsSe
   }
 
   $interval(function() {
-    $scope.loadAlerts(lowerAlerts = false);
+    if (!$scope.loadLock) {
+      $scope.loadAlerts(lowerAlerts = false);
+    }
   }, 5000);
 
   initData = function(firstCall = false) {
@@ -427,6 +429,9 @@ app.controller('AlertsController', function($scope, $filter, $interval, AlertsSe
   }
 
   $scope.alertClick = function(alert) {
+    // Invert the lock value when the user opens/closes an alert
+    $scope.loadLock = !$scope.loadLock;
+
     if ($scope.openedAlertIds.indexOf(alert.id) == -1) {
       $scope.openedAlertIds.push(alert.id);
       $scope.loadInitialPosts(alert);
