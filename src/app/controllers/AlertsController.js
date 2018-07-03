@@ -23,9 +23,8 @@ app.controller('AlertsController', function($scope, $filter, $interval, AlertsSe
   $scope.alertFilter = 'undecided';
   $scope.avatarColors = {};
   $scope.subredditColors = {};
-  var colors = ['F44336', 'E91E63', '9C27B0', '673AB7', '3F51B5', '2196F3',
-    '00BCD4', '009688', '4CAF50', 'CDDC39', 'FFC107', 'FF9800',
-    'FF5722', '795548'
+  var colors = ['E91E63', '9C27B0', '673AB7', '3F51B5', '2196F3',
+    '00BCD4', '009688', '4CAF50', 'CDDC39', '795548'
   ];
 
   $scope.sortBy = "proba";
