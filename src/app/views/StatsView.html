@@ -32,8 +32,8 @@
             <h5>{{ submissions | number : 0 }} <span class="blue-text accent-2">submissions</span></h5>
           </div>
           <div class="card-action stats-card-action blue accent-2">
-            <!-- <h5><i class="left material-icons">swap_calls</i>{{ analyzedTextsSecond | number : 1 }} analyzed/sec</h5> -->
-            <h5><i class="left material-icons">swap_calls</i>{{ analyzedTextsSecond | number : 0 }} | {{ comments + submissions - analyzedTextsSecond | number : 0 | greaterzero }} in queue</h5>
+            <h5><i class="left material-icons">swap_calls</i>{{ analyzedTextsSecond | number : 1 }} analyzed/sec</h5>
+            <!-- <h5><i class="left material-icons">swap_calls</i>{{ analyzedTextsSecond | number : 0 }} | {{ comments + submissions - analyzedTextsSecond | number : 0 | greaterzero }} in queue</h5> -->
           </div>
         </div>
       </div>
@@ -48,8 +48,8 @@
             <h1>{{ users | number : 0 }} <span class="blue-text accent-2">users</span></h1>
           </div>
           <div class="card-action stats-card-action blue accent-2">
-            <!-- <h5><i class="left material-icons">swap_calls</i>{{ analyzedUsersSecond * 60 | number : 1 }} analyzed/min</h5> -->
-            <h5><i class="left material-icons">swap_calls</i>{{ analyzedUsersSecond | number : 0 }} analyzed</h5>
+            <h5><i class="left material-icons">swap_calls</i>{{ analyzedUsersSecond * 60 | number : 1 }} analyzed/min</h5>
+            <!-- <h5><i class="left material-icons">swap_calls</i>{{ analyzedUsersSecond | number : 0 }} analyzed</h5> -->
           </div>
         </div>
       </div>
