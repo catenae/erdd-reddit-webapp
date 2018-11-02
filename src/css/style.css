@@ -19,16 +19,16 @@
 
 .big-card-icon {
   font-size: 100px;
-  color: #ff6e40;
+  color: #424242;
 }
 
 .blue-text {
-  color: #ff6e40 !important;
+  color: #424242 !important;
 }
 
 .big-card-title {
   font-size: 50px;
-  color: #ff6e40;
+  color: #424242;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
@@ -90,6 +90,10 @@
   margin-bottom: 20px;
 }
 
+.switch label input[type="checkbox"]:checked + .lever {
+  background-color: #9E9E9E;
+}
+
 .filters-container {
   padding-top: 20px;
   background-color: #fff;
@@ -103,7 +107,7 @@
   background-color: white;
   /* border: 1px;
   border-style: solid;
-  border-color: #ff6e40;
+  border-color: #424242;
   border-radius: 5px; */
 }
 
@@ -156,7 +160,7 @@
 .avatar-circle {
   width: 70px;
   height: 70px;
-  background-color: #ff6e40;
+  background-color: #424242;
   text-align: center;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -178,15 +182,15 @@
 }
 
 .tabs .tab a {
-  color: #ff9e80;
+  color: #212121;
 }
 
 .tabs .tab a:active {
-  color: #ff6e40;
+  color: #424242;
 }
 
 .tabs .indicator {
-  background-color: #ff6e40;
+  background-color: #424242;
 }
 
 .alert-tabs>.indicator {
@@ -240,7 +244,7 @@ main {
 
 .logo-container-line {
   height: 4px;
-  background-color: #ff3d00;
+  background-color: #212121;
 }
 
 .logo-container {
@@ -332,7 +336,7 @@ main {
 }
 
 .alert-progress .determinate {
-  background-color: #ff6e40;
+  background-color: #424242;
 }
 
 .post-header-text {

@@ -27,7 +27,7 @@ app.controller('AlertsController', function($scope, $filter, $interval, AlertsSe
     '00BCD4', '009688', '4CAF50', 'CDDC39', '795548'
   ];
 
-  $scope.sortBy = "proba";
+  $scope.sortBy = "timestamp";
 
   var prevHighestAlertFilter;
   var prevLowestAlertFilter;
