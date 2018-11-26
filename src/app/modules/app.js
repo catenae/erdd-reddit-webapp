@@ -20,7 +20,7 @@
 
 var app = angular.module("catenae", ['ngRoute', 'chart.js', 'nvd3ChartDirectives']);
 
-app.constant('urlBase', 'http://catenae.brunneis.com:8080/api/v1.0');
+app.constant('urlBase', 'http://redd.brunneis.com:8080/api/v1.0');
 
 app.filter('sentences', function() {
   return function(value) {
